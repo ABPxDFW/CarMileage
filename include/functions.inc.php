@@ -45,7 +45,7 @@ function pswMatch($password,$pswRepeat) {
 }
 
 function uidExists($conn,$username, $email) {
-    $sql = "SELECT * FROM users WHERE userId = ? OR userEmail = ?;";
+    $sql = "SELECT * FROM users WHERE userName = ? OR userEmail = ?;";
     $stmt = mysqli_stmt_init($conn);
 
     //Check to make sure the query syntax is correct.
@@ -92,4 +92,39 @@ function createUser($conn,$firstName,$lastName,$email,$username,$password) {
 
     header("location: ../signup.php?error=none");
     exit();
+}
+
+function emptyInputLogin($username,$password) {
+    $result;
+    if(empty($username) || empty($password)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function loginUser($conn,$username,$password) {
+    $uidExists = uidExists($conn,$username,$username);
+
+    if($uidExists === false) {
+        header("location: ../login.php?error=wronglogin");
+        exit();
+    }
+
+    $pswHashed = $uidExists["userPassword"];
+    $checkPsw = password_verify($password,$pswHashed);
+
+    if($checkPsw === false) {
+        header("location: ../login.php?error=wronglogin");
+        exit();
+    }
+    else if($checkPsw === true) {
+        session_start();
+        $_SESSION["userid"] = $uidExists["userId"];
+        $_SESSION["userName"] = $uidExists["userName"];
+        header("location: ../index.php");
+        exit();
+    }
 }
