@@ -20,7 +20,7 @@
                     <?php
                         if(isset($_SESSION["userid"])) {
                             echo "<li><a href='welcomeback.php'>Welcome back Page</a></li>";
-                            echo "<li><a href='logout.php'>Log out</a></li>";
+                            echo "<li><a href='include/logout.inc.php'>Log out</a></li>";
                         }
                         else {
                             echo "<li><a href='signup.php'>Sign-Up</a></li>";
