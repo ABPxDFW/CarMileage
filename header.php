@@ -6,12 +6,13 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
         <title></title>
     </head>
     <body>
         <nav>
             <div class="wrapper">
-                <a href="index.php">Banner</a>
+              <!--  <a href="index.php">Banner</a> -->
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="discover.php">About Us</a></li>

@@ -3,6 +3,7 @@
 ?>
     <section class="index-intro">
         <h1>Placeholder1</h1>
+    </div>
         <p>The purpose<p>
     </section>
     <section class="index-categories">
