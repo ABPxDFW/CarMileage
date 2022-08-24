@@ -6,8 +6,8 @@
         $yearMade = $_POST["year_made"];
         $dateOwned = $_POST["date_owned"];
 
-        require_once ('dbh.inc.php');
-        require_once ('functions.inc.php');
+        require_once 'dbh.inc.php';
+        require_once 'functions.inc.php';
 
         if(emptyInputVehicle($carName,$brand,$model,$yearMade,$dateOwned) !== false) {
             header("location: ../add_car.php?error=emptyinput");
