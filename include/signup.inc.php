@@ -7,8 +7,8 @@
         $password = $_POST["psw"];
         $pswRepeat = $_POST["pswrepeat"];
 
-        require_once 'dbh.inc.php';
-        require_once 'functions.inc.php';
+        require_once ('dbh.inc.php');
+        require_once ('functions.inc.php');
 
         if(emptyInputSignup($firstName,$lastName,$email,$username,$password,$pswRepeat) !== false) {
             header("location: ../signup.php?error=emptyinput");

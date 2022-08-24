@@ -15,12 +15,16 @@
               <!--  <a href="index.php">Banner</a> -->
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="discover.php">About Us</a></li>
-                    <li><a href="blog.php">Blog</a></li>
 
                     <?php
-                        if(isset($_SESSION["userid"])) {
-                            echo "<li><a href='welcomeback.php'>Welcome back Page</a></li>";
+                        if(isset($_SESSION["userid"]) && $_SESSION["admin"] == 'Y') {
+                            echo "<li><a href='add_car.php'>Add Vehicle</a></li>";
+                            echo "<li><a href='add_station.php'>Add Gas Station</a></li>";
+                            echo "<li><a href='add_transaction.php'>Input Transaction</a></li>";
+                            echo "<li><a href='include/logout.inc.php'>Log out</a></li>";
+                        }
+                        else if(isset($_SESSION["userid"])) {
+                            echo "<li><a href='add_transaction.php'>Input Transaction</a></li>";
                             echo "<li><a href='include/logout.inc.php'>Log out</a></li>";
                         }
                         else {
