@@ -1,5 +1,6 @@
 <?php
 
+// Functions below are for creating new users.
 function emptyInputSignup($firstName,$lastName,$email,$username,$password,$pswRepeat) {
     $result;
     if(empty($firstName) || empty($lastName) || empty($email) || empty($username) || empty($password) || empty($pswRepeat)) {
@@ -94,20 +95,10 @@ function createUser($conn,$firstName,$lastName,$email,$username,$password) {
     exit();
 }
 
+// Functions below are for log in feature.
 function emptyInputLogin($username,$password) {
     $result;
     if(empty($username) || empty($password)) {
-        $result = true;
-    }
-    else {
-        $result = false;
-    }
-    return $result;
-}
-
-function emptyInputVehicle($carName,$brand,$model,$yearMade,$dateOwned) {
-$result;
-    if(empty($carName) || empty($brand) || empty($model) || empty($yearMade) || empty($dateOwned)) {
         $result = true;
     }
     else {
@@ -139,6 +130,18 @@ function loginUser($conn,$username,$password) {
         header("location: ../index.php");
         exit();
     }
+}
+
+// Functions below are for adding new vehicles.
+function emptyInputVehicle($carName,$brand,$model,$yearMade,$dateOwned) {
+    $result;
+    if(empty($carName) || empty($brand) || empty($model) || empty($yearMade) || empty($dateOwned)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
 }
 
 function invalidVehicle($carName) {
@@ -199,3 +202,5 @@ function createVehicle($conn,$carName,$brand,$model,$yearMade,$dateOwned) {
     header("location: ../add_car.php?error=none");
     exit();
 }
+
+// Functions below are for adding new gas stations.
