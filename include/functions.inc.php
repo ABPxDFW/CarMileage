@@ -204,3 +204,72 @@ function createVehicle($conn,$carName,$brand,$model,$yearMade,$dateOwned) {
 }
 
 // Functions below are for adding new gas stations.
+function emptyInputStation($stationName,$stationCode,$street,$city,$state,$phone) {
+    $result;
+    if(empty($stationName) || empty($stationCode) || empty($street) || empty($city) || empty($state)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function invalidStation($stationCode) {
+    $result;
+    if(!preg_match("/^[a-zA-Z0-9_]*$/", $stationCode)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function stationExists($conn,$stationCode) {
+    $sql = "SELECT * FROM gas_station WHERE station_code = ?;";
+    $stmt = mysqli_stmt_init($conn);
+
+    //Check to make sure the query syntax is correct.
+    if(!mysqli_stmt_prepare($stmt,$sql)) {
+        header("location: ../add_station.php?error=stmtfailed");
+        exit();
+    }
+
+    // ss is two strings, if there are 3 strings, it will be "sss".
+    mysqli_stmt_bind_param($stmt,"s",$stationCode);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    }
+    else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+function createStation($conn,$stationName,$stationCode,$street,$city,$state,$phone=0) {
+    $sql = "INSERT INTO gas_station (station_code,station_name,street,city,state,phone) VALUES (?,?,?,?,?,?);";
+    $stmt = mysqli_stmt_init($conn);
+
+    //Check to make sure the query syntax is correct.
+    if(!mysqli_stmt_prepare($stmt,$sql)) {
+        header("location: ../add_station.php?error=stmtfailed");
+        exit();
+    }
+
+    // sssss is five strings, if there are 3 strings, it will be "sss".
+    mysqli_stmt_bind_param($stmt,"ssssss",$stationCode,$stationName,$street,$city,$state,$phone);
+
+    mysqli_stmt_execute($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    header("location: ../add_station.php?error=none");
+    exit();
+}
