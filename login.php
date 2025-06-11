@@ -4,8 +4,8 @@
     <section class="login-form">
         <h1>Log In</h1>
         <form action="include/login.inc.php" method="post">
-            <input type="text" name="uid" placeholder="Enter Username/Email">
-            <input type="password" name="psw" placeholder="Enter a password">
+            <input type="text" name="uid" placeholder="Enter Username/Email"><br>
+            <input type="password" name="psw" placeholder="Enter a password"><br>
             <button type="submit" name="submit">Log In</button>
         </form>
         <?php
