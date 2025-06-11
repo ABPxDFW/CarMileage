@@ -6,11 +6,11 @@
         <div class="signup-form-form">
             <form action="include/signup.inc.php" method="post">
                 <input type="text" name="firstname" placeholder="Enter first name">
-                <input type="text" name="lastname" placeholder="Enter last name">
-                <input type="text" name="email" placeholder="Enter email">
-                <input type="text" name="uid" placeholder="Enter user name">
-                <input type="password" name="psw" placeholder="Enter a password">
-                <input type="password" name="pswrepeat" placeholder="Re-enter password">
+                <input type="text" name="lastname" placeholder="Enter last name"><br>
+                <input type="text" name="email" placeholder="Enter email"><br>
+                <input type="text" name="uid" placeholder="Enter user name"><br>
+                <input type="password" name="psw" placeholder="Enter a password"><br>
+                <input type="password" name="pswrepeat" placeholder="Re-enter password"><br>
                 <button type="submit" name="submit">Sign Up</button>
             </form>
         </div>
@@ -29,7 +29,7 @@
                     echo "<p>The passwords entered do not match. Please try again.</p>";
                 }
                 else if($_GET["error"] == "usernametaken") {
-                    echo "<p>The usernamed entered has already been taken. Please try again.</p>";
+                    echo "<p>The username and/or email entered has already been taken. Please try again.</p>";
                 }
                 else if($_GET["error"] == "none") {
                     echo "<p>New account has been created successfully.</p>";
